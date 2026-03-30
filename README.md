@@ -21,9 +21,15 @@ I implemented three distinct modeling approaches to evaluate their performance:
 
 | Model | R-Squared ($R^2$) | MAE ($) | Best Use Case |
 | :--- | :--- | :--- | :--- |
-| **Linear Regression** | 0.70 | 125,000 | Fast baseline & feature importance |
-| **Random Forest** | 0.87 | 72,000 | Robustness against outliers |
-| **XGBoost** | 0.90 | 65,000 | Maximum predictive precision |
+| **Linear Regression** | 0.6146 | 154,726 | Fast baseline & feature importance |
+| **Random Forest** | 0.6447 | 140,029 | Robustness against outliers |
+| **XGBoost** | 0.6203 | 136,467 | Maximum predictive precision |
+
+## 🔬 The Analysis of Results
+* **The "Winner"**: XGBoost has the lowest MAE ($136,467). In real estate, being "less wrong" on average is often the goal. Even though its $R^2$ is slightly lower than Random Forest, its ability to minimize absolute error makes it the superior choice for a pricing engine.
+* **Model Complexity vs. Gain**: Notice that moving from a simple Linear Regression to a complex Random Forest only improved your $R^2$ by about 3% (0.61 to 0.64).
+* *Interpretation*: This suggests that the current features (sqft, bedrooms, etc.) have a strong linear relationship with price, and the "unexplained" variance might be due to things not in your data (like school districts or recent renovations).
+* **The MAE Reality Check**: An average error of ~$136k might seem high, but remember that Seattle house prices in this dataset can reach into the millions.
 
 ## 💡 Key Insights
 * **Feature Impact:** Square footage and house grade are the strongest predictors across all models.
